@@ -1,0 +1,7 @@
+.container-UserOutput {
+  border: 1px solid black;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+  margin: 1rem auto;
+  padding: .5rem;
+  width: 80%;
+}
