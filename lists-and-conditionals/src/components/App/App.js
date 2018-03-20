@@ -7,31 +7,41 @@ class App extends Component {
     super(props)
     this.state = {
       persons: [
-        { name: 'Max', age: 28 },
-        { name: 'Manu', age: 30 },
-        { name: 'Stephanie', age: 31 },
+        { id: 'asdf', name: 'Max', age: 28 },
+        { id: 'fdsa', name: 'Manu', age: 30 },
+        { id: 'as1fd', name: 'Stephanie', age: 31 },
       ],
+      showPersons: false,
     }
   }
 
-  switchNameHandler = (newName) => {
-    this.setState({
-      persons: [
-        { name: newName, age: 30 },
-        { name: 'Jon', age: 28 },
-        { name: 'Cenzo', age: 29 },
-      ],
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id
     })
+
+    const person = {
+      ...this.state.persons[personIndex]
+    }
+
+    // const person = Object.assign({}, this.state.persons[personIndex])
+    person.name = event.target.value
+
+    const persons = [...this.state.persons]
+    persons[personIndex] = person
+
+    this.setState({ persons: persons })
   }
 
-  nameChangedHandler = (event) => {
-    this.setState({
-      persons: [
-        { name: 'Max', age: 30 },
-        { name: event.target.value, age: 28 },
-        { name: 'Cenzo', age: 29 },
-      ],
-    })
+  deletePersonHandler = (personIndex) => {
+    const persons = [...this.state.persons]
+    persons.splice(personIndex, 1)
+    this.setState({ persons: persons })
+  }
+
+  togglePersonsHandler = (event) => {
+    const doesShow = this.state.showPersons
+    this.setState({ showPersons: !doesShow })
   }
 
   render() {
@@ -42,6 +52,24 @@ class App extends Component {
       padding: '8px',
       cursor: 'pointer',
     }
+
+    let persons = null
+    if(this.state.showPersons) {
+      persons = (
+        <div>
+          {this.state.persons.map((person, index) => {
+            return <Person
+              key={person.id}
+              click={() => this.deletePersonHandler(index)}
+              name={person.name}
+              age={person.age}
+              changed={(event) => this.nameChangedHandler(event, person.id)}
+              />
+          })}
+          </div>
+      )
+    }
+    
     return (
       <div className="App">
         <h1>Hi, I'm a React App!</h1>
@@ -49,20 +77,8 @@ class App extends Component {
         {/* () => this.function(arguments) can be inefficient as it can cause multiple rerenders */}
         <button 
           style={style}
-          onClick={() => this.switchNameHandler('Josh')}>Switch Name</button>
-        <Person 
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          // this is the preferred way of passing arguments for performance reasons
-          click={this.switchNameHandler.bind(this, 'Max')} />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          changed={this.nameChangedHandler}>
-          My Hobbies: Racing</Person>
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age} />
+          onClick={this.togglePersonsHandler}>Show Persons</button>
+        {persons}
       </div>
     );
   }
