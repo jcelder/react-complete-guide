@@ -5,3 +5,9 @@
   margin: 1rem auto;
   padding: 1rem;
 }
+
+@media (min-width: 500px) {
+  .container-person {
+    width: 450px;
+  }
+}
