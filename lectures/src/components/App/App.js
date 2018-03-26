@@ -46,7 +46,8 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -68,12 +69,21 @@ class App extends Component {
           })}
           </div>
       )
+      style.backgroundColor = 'red'
+    }
+
+    const paragraphClasses = ['']
+    if(this.state.persons.length <= 2) {
+      paragraphClasses.push('red')
+    }
+    if(this.state.persons.length <= 1) {
+      paragraphClasses.push('bold')
     }
     
     return (
       <div className="App">
         <h1>Hi, I'm a React App!</h1>
-        <p>This is really working!</p>
+        <p className={paragraphClasses.join(' ')}>This is really working!</p>
         {/* () => this.function(arguments) can be inefficient as it can cause multiple rerenders */}
         <button 
           style={style}
