@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+
 import PersonsList from '../../components/PersonsList/PersonsList'
+import Cockpit from '../../components/Cockpit/Cockpit'
+
 import styles from './App.css';
 
 class App extends Component {
@@ -46,35 +49,19 @@ class App extends Component {
 
   render() {
     let persons = null
-    let btnStyles = null
     if(this.state.showPersons) {
-      persons = (
-        <div>
-          <PersonsList
-            persons={this.state.persons}
-            clicked={this.deletePersonHandler}
-            changed={this.nameChangedHandler} />
-        </div>
-      )
-    btnStyles = styles.Red
-    }
-
-    const paragraphClasses = ['']
-    if(this.state.persons.length <= 2) {
-      paragraphClasses.push(styles.red)
-    }
-    if(this.state.persons.length <= 1) {
-      paragraphClasses.push(styles.bold)
-    }
+      persons = <PersonsList
+        persons={this.state.persons}
+        clicked={this.deletePersonHandler}
+        changed={this.nameChangedHandler} />
     
+    }
     return (
       <div className={styles.App}>
-        <h1>Hi, I'm a React App!</h1>
-        <p className={paragraphClasses.join(' ')}>This is really working!</p>
-        {/* () => this.function(arguments) can be inefficient as it can cause multiple rerenders */}
-        <button 
-          className={btnStyles}
-          onClick={this.togglePersonsHandler}>Show Persons</button>
+        <Cockpit
+          persons={this.state.persons}
+          showPersons={this.state.showPersons}
+          clicked={this.togglePersonsHandler}/>
         {persons}
       </div>
     );
