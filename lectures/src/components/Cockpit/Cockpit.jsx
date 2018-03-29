@@ -15,7 +15,7 @@ const Cockpit = props => {
   }
   return (
     <div className={styles.Cockpit}>
-      <h1>Hi, I'm a React App!</h1>
+      <h1>{props.appTitle}</h1>
       <p className={paragraphStyles.join(' ')}>This is really working!</p>
       {/* () => this.function(arguments) can be inefficient as it can cause multiple rerenders */}
       <button 
