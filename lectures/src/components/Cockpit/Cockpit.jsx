@@ -1,11 +1,13 @@
 import React from 'react'
+
+import Aux from '../../hoc/Aux'
 import styles from './Cockpit.css'
 
 const Cockpit = props => {
   const paragraphStyles = ['']
-  let btnStyles = ''
+  let btnStyles = styles.Button
   if (props.showPersons) {
-    btnStyles = styles.Red
+    btnStyles = [styles.Button, styles.Red].join(' ')
   }
   if(props.persons.length <= 2) {
     paragraphStyles.push(styles.red)
@@ -14,14 +16,14 @@ const Cockpit = props => {
     paragraphStyles.push(styles.bold)
   }
   return (
-    <div className={styles.Cockpit}>
+    <Aux>
       <h1>{props.appTitle}</h1>
       <p className={paragraphStyles.join(' ')}>This is really working!</p>
       {/* () => this.function(arguments) can be inefficient as it can cause multiple rerenders */}
       <button 
         className={btnStyles}
-        onClick={props.clicked}>Show Persons</button>
-    </div>
+        onClick={props.clicked}>Toggle Persons</button>
+    </Aux>
   )
 }
 
