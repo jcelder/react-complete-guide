@@ -8,6 +8,7 @@ import styles from './App.css';
 class App extends Component {
   constructor(props) {
     super(props)
+    console.log('[App.js] Inside Constructor', props)
     this.state = {
       persons: [
         { id: 'asdf', name: 'Max', age: 28 },
@@ -16,6 +17,14 @@ class App extends Component {
       ],
       showPersons: false,
     }
+  }
+
+  componentWillMount() {
+    console.log('[App.js] Inside componentWillMount()')
+  }
+
+  componentDidMount() {
+    console.log('[App.js] Inside componentDidMount()')
   }
 
   nameChangedHandler = (event, id) => {
@@ -48,6 +57,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('[App.js] Inside render()')
     let persons = null
     if(this.state.showPersons) {
       persons = <PersonsList
