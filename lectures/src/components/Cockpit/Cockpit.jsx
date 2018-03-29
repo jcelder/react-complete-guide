@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
-import Aux from '../../hoc/Aux'
 import styles from './Cockpit.css'
 
 const Cockpit = props => {
@@ -16,14 +15,14 @@ const Cockpit = props => {
     paragraphStyles.push(styles.bold)
   }
   return (
-    <Aux>
+    <Fragment>
       <h1>{props.appTitle}</h1>
       <p className={paragraphStyles.join(' ')}>This is really working!</p>
       {/* () => this.function(arguments) can be inefficient as it can cause multiple rerenders */}
       <button 
         className={btnStyles}
         onClick={props.clicked}>Toggle Persons</button>
-    </Aux>
+    </Fragment>
   )
 }
 
