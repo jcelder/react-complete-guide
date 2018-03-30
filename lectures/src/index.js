@@ -4,5 +4,5 @@ import './index.css';
 import App from './containers/App/App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App title="Relevant Persons"/>, document.getElementById('root'));
+ReactDOM.render(<App title="React Lifecycle Methods"/>, document.getElementById('root'));
 registerServiceWorker();
