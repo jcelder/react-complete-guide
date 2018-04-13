@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 
 import axios from '../../axios-orders'
 
-import Aux from '../../hoc/Aux'
+import Aux from '../../hoc/Aux/Aux'
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls'
 import Modal from '../../components/UI/Modal/Modal'
@@ -16,7 +17,7 @@ const INGREDIENT_PRICES = {
   bacon: 0.7
 }
 
-export default class BurgerBuilder extends Component {
+class BurgerBuilder extends Component {
   constructor(props) {
     super(props)
 
@@ -133,3 +134,5 @@ export default class BurgerBuilder extends Component {
     )
   }
 }
+
+export default withErrorHandler(BurgerBuilder, axios)
