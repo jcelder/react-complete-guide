@@ -8,4 +8,9 @@ instance.defaults.headers.common['Authorization'] = 'Auth Token From Instance'
 
 // instance.interceptors.request...
 
+instance.interceptors.request((req, error) => {
+  console.log(error)
+  return req
+})
+
 export default instance
